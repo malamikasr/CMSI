@@ -6,11 +6,6 @@ function [x,iter] = gauss(A,B,epsilon)
 
 %% Initialisation des variables
 x = ones(size(B));
-L = tril(A);
-M = diag(A) + L;
-U = triu(A)-M;
-L = A-triu(A);
-N =-L-U;
 iter = 0;
 
 %% Boucle tant que la précision souhaitée n'est pas atteinte on itère
