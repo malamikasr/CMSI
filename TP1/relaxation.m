@@ -18,13 +18,14 @@ function [X,iter] = relaxation(A, B, epsilon)
    for i = 0.01:0.01:1.99
        pi = inv(D + i*L)*((1-i)*D - i*U);
        rayspec1 = max(abs(eig(pi)));
-       if(rayspec1 < rayspec)
+       if(rayspec1 < rayspec) %Si on trouve une valeur plus petite que la valeur initiale 
+       %on prend la nouvelle valeur
            w = i;
            rayspec = rayspec1;
            pimin = pi;
        end
    end
-   beta = inv(D + w * L)*w*B;
+   beta = inv(D + w * L)*w*B; %Car X(m+1)=pi*X(m)+beta
    
 %% Boucle tant que la précision souhaitée n'est pas atteinte on itère : 
    while max(abs(A * X - B)) > epsilon
